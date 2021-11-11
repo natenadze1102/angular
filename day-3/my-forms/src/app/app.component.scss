@@ -1,0 +1,21 @@
+button {
+    border:none;
+    border-radius: 10px;
+    color: #fff;  
+}
+
+#newUserBtn {
+    background-color:#9fd250;
+
+    &[disabled] {
+        background-color: #9ed25077;
+    }
+}
+
+#userListBtn {
+    background-color: #1890FF;
+
+    &[disabled] {
+        background-color: hsla(209, 100%, 55%, 0.39)
+    }
+}

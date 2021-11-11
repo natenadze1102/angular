@@ -1,0 +1,197 @@
+<!-- Простая форма, которая пошлёт GET запрос -->
+<div class="container">
+    <div class="row">
+      <form 
+      [formGroup]='profileForm' 
+      (ngSubmit)="onSubmit()">
+        <div class="inputWrapper">
+          <label for="email">E-mail:</label>
+          <input 
+          id="email" 
+          type="email" 
+          name="name" 
+          formControlName = "email">
+            <div class="validatorMsgs">
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.email.touched) && profileFormControl.email.errors?.required">
+                    Enter email address is required
+                </span>
+                
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.email.touched) && profileFormControl.email.errors?.email">
+                    Email address must be valid
+                </span>
+            </div>
+        </div>
+       
+        <div class="inputWrapper">
+          <label for="password">Password:</label>
+          <input 
+            id="password" 
+            type="password" 
+            name="password"
+            formControlName="pass"
+            #pass>
+            <div class="validatorMsgs">
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.pass.touched) && profileFormControl.pass.errors?.required">
+                    Password is required
+                </span>
+                
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.pass.touched) && profileFormControl.pass.errors?.pattern">
+                    Password should contain only english characters and numbers
+                </span>
+                
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.pass.touched) && profileFormControl.pass.errors?.minlength">
+                    The lenght of Password should be more then 7 characters
+                </span>
+            </div>
+        </div>
+        
+        <div class="inputWrapper">
+          <label for="confPassword">Confirm Password:</label>
+          <input 
+            id="repeatPassword" 
+            type="password" 
+            name="repeatPassword"
+            formControlName="confirm_password"
+            #confPass>
+            <div class="validatorMsgs">
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.confirm_password.touched) && profileFormControl.confirm_password.errors?.required">
+                    Confirm password is required
+                </span>
+                
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.confirm_password.touched) && confPass.value != pass.value ">
+                    Fields Password and Confirm Password should be the same
+                </span>
+            </div>
+           
+        </div>
+        
+        <div class="inputWrapper">
+            <label for="Nickname">Nickname:</label>
+            <input 
+                id="Nickname" 
+                type="text" 
+                name="name"
+                formControlName = "nick">
+
+                <div class="validatorMsgs">
+                    <span 
+                        class="validation-message" 
+                        *ngIf="(profileFormControl.nick.touched) && profileFormControl.nick.errors?.required">
+                        Nickname is required
+                    </span>
+                    
+                    <span 
+                        class="validation-message" 
+                        *ngIf="(profileFormControl.nick.touched) && profileFormControl.nick.errors?.pattern">
+                        Nickname should contain only english characters numbers and character
+                    </span>
+                </div>
+               
+        </div>
+        
+        <div class="inputWrapper">
+          <label for="phone">Phone Number:</label>
+          <input 
+            id="phone" 
+            type="text" 
+            name="phone"
+            min="0"
+            formControlName = "phoneNum">
+
+            <div class="validatorMsgs">
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.phoneNum.touched) && profileFormControl.phoneNum.errors?.required">
+                    Phone number is required
+                </span>
+            
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.phoneNum.touched) && profileFormControl.phoneNum.errors?.min">
+                    Phone Number should contain 12 numbers
+                </span>
+            
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.phoneNum.touched) && profileFormControl.phoneNum.errors?.pattern">
+                    Phone Number should always starts from +380
+                </span>
+            </div>
+       
+        </div>
+        
+        <div class="inputWrapper">
+          <label for="website">Website:</label>
+          <input 
+            id="website" 
+            type="url" 
+            placeholder="Website"
+            formControlName = "web">
+
+            <div class="validatorMsgs">
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.web.touched) && profileFormControl.web.errors?.required">
+                    Website is required
+                </span>
+                
+                <span 
+                    class="validation-message" 
+                    *ngIf="(profileFormControl.web.touched) && profileFormControl.web.errors?.pattern">
+                    Website should be like a website url
+                </span>
+            </div>
+        </div>
+        
+
+        <div class="inputWrapper">
+            <input 
+                type="checkbox"
+                id="tests"
+                formControlName = "checkbox"
+                #checkbox
+                [checked]='isEditing'
+                required>
+                <div class="validatorMsgs">
+                    <span 
+                        class="validation-message" 
+                        *ngIf="(profileFormControl.checkbox.touched) && profileFormControl.checkbox.errors?.required">
+                        Checkbox is required
+                    </span>
+                </div>
+              
+            <p id="agreement">I have read an <a href="#"><strong>agreement</strong></a></p>
+        </div>
+       
+        <button
+            *ngIf="!isEditing"
+            id="btn-submit"
+            type="submit" 
+            name="submit" 
+            [disabled] = "!profileForm.valid && checkbox.value"
+           >Register
+        </button>
+      
+      </form>
+      <button
+      *ngIf="isEditing"
+      id="btn-edit"
+      [disabled] = "!profileForm.valid && checkbox.value"
+      (click)="updateUserInfo()">Update User
+  </button>
+    </div>
+</div>

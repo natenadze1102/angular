@@ -1,0 +1,75 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-uppercase mb-0">👥 Manage Users</h1>
+            </div>
+            <div class="table-responsive">
+                <table class="table no-wrap user-table mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">№</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">✉Email</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">🔑Password</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">🔑Repeat Password</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">👤Nickname</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">📞Phone-number</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">🕸Website</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of usersArray; index as i;">
+                      <td class="pl-4">{{i + 1}}</td>
+                      <td>
+                        <span class="text-muted">{{user.email}}</span><br>
+                      </td>
+                      <td>
+                        <span class="text-muted">{{user.password}}</span><br>
+                      </td>
+
+                      <td>
+                        <span class="text-muted">{{user.password_repeat}}</span><br>
+                      </td>
+                      <td>
+                          <span class="font-medium mb-0">{{user.nickname}}</span>
+                      </td>
+                    
+                      <td>
+                          <span class="text-muted">{{user.phone}}</span>
+                          <br>
+                      </td>
+                      
+                      <td>
+                          <span class="text-muted">{{user.website}}</span><br>
+                      </td>
+                     
+                      <td style="display: flex;">
+                        <button 
+                          type="button" 
+                          class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"
+                          (click)="deleteUser(user,i)"
+                          ><i class="fa fa-trash"></i> </button>
+                        <button 
+                        type="button" 
+                        class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"
+                        (click)="triggerUserUpdate(user,i)"
+                        >
+                        <i class="fa fa-edit"></i> </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<app-form 
+  [userIndex]="userIndex"
+  [currentUser] = "currentUser"
+  [isEditing] = "isEditing"
+  *ngIf="isEditing">
+</app-form>

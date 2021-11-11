@@ -1,0 +1,23 @@
+<button 
+    type="button"
+    id="newUserBtn"
+    (click)="toggleRegisterForm()"
+    [disabled]="listFormIsShown">New User
+</button>
+<button
+    type="button"
+    id="userListBtn"
+    (click)="toggleUserListForm()"
+    [disabled]="registFormIsShown">
+    User List</button>
+<app-form
+    *ngIf="registFormIsShown"
+    [usersArray] = usersArray
+    >
+</app-form>
+<app-users 
+    *ngIf="listFormIsShown"
+    [usersArray] = 'usersArray'
+></app-users> 
+
+<!-- (newItemEvent)="addItem($event)" -->
