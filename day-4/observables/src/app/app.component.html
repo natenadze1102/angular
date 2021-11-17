@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <form 
+      [formGroup]='currencyForm' #form>
+      <div class="inputWrapper">
+        <input 
+            id="currency1" 
+            type="number" 
+            placeholder="Type amount"
+            formControlName = "firstCurrencyAmount">
+
+            <select 
+                  formControlName="currencyFrom"
+                  id="firstCurr"
+                  name="firstCurr">
+                  <option *ngFor="let cur of currencyList">
+                      {{ cur }}
+                </option>
+            </select>
+      </div>
+
+      <div class="inputWrapper">
+        <input 
+            id="currency2" 
+            type="number" 
+            placeholder="Type amount"
+            formControlName = "secondCurrencyAmount">
+
+          <select 
+                formControlName="currencyTo"
+                id="secondCurr"
+                name="secondCurr">
+                <option *ngFor="let cur of currencyList">
+                      {{ cur }}
+            </option>
+        </select>
+      </div>
+    </form>
+
+    <form 
+      [formGroup]='currenciesSumForm'>
+      <div class="inputWrapper">
+        <input 
+            id="currency1" 
+            type="number" 
+            placeholder="Result will appear here"
+            formControlName = "resultInput">
+
+            <select 
+                  formControlName="finalResult"
+                  id="firstCurr"
+                  name="firstCurr">
+                <option *ngFor="let cur of currencyList">
+                      {{ cur}}
+                </option>
+            </select>
+      </div>
+      <button 
+        [disabled]="!arrayInputs.length"
+        (click)='getCurrsSum()'>Get Result</button>
+      <button (click)="addInput()">Add Currency</button>
+      <!-- <button (click)="watchValues()">Watch</button> -->
+
+      <ng-container  *ngIf="arrayInputs.length">
+        <div
+         
+          *ngFor="let testArr of input.controls let i = index;"
+          formArrayName="formArray"
+          class="inputWrapper">
+        <ng-container [formGroupName]="i">
+            <input 
+              type="number" 
+              placeholder="Type amount"
+              formControlName = "amount">
+
+            <select 
+                  formControlName="currencyValue"
+                  name="secondCurr">
+                  <option *ngFor="let cur of currencyList">
+                          {{ cur}}
+                  </option>
+            </select>
+        </ng-container>
+      </div>
+      </ng-container>
+    </form>
+  </div>
+</div>

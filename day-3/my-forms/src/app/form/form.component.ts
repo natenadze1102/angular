@@ -53,10 +53,9 @@ export class FormComponent implements OnInit {
     }
   );
 
-  // @Output() newItemEvent = new EventEmitter(); // design type!
   user: any;
 
-  ReadOnlyStyleGuideNotes!: boolean;
+  @Output() newItemEvent = new EventEmitter(); // design type!
   @Input() usersArray!: object[];
   @Input() userIndex!: number;
   @Input() currentUser: any;
