@@ -55,11 +55,12 @@ export class FormComponent implements OnInit {
 
   user: any;
 
-  @Output() newItemEvent = new EventEmitter();
   @Input() usersArray!: object[];
   @Input() userIndex!: number;
   @Input() currentUser: any;
   @Input() isEditing!: boolean;
+  @Output()
+  isEditingEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private fb: FormBuilder) {}
 
@@ -104,8 +105,9 @@ export class FormComponent implements OnInit {
       this.currentUser.nickname = this.profileForm.value.nick;
       this.currentUser.phone = this.profileForm.value.phoneNum;
       this.currentUser.website = this.profileForm.value.web;
+      this.isEditing = false;
 
-      // this.isEditing = !this.isEditing;
+      this.isEditingEmitter.emit(this.isEditing);
     }
   }
 

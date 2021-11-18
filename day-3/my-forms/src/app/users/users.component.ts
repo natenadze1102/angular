@@ -12,6 +12,8 @@ export class UsersComponent implements OnInit {
   userIndex!: number;
   isEditing!: boolean;
 
+  test: any;
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -31,5 +33,9 @@ export class UsersComponent implements OnInit {
     this.currentUser = user;
     this.userIndex = i;
     this.isEditing = !this.isEditing;
+  }
+
+  recieveIsEditing(recievedValue: boolean) {
+    this.isEditing = recievedValue;
   }
 }
