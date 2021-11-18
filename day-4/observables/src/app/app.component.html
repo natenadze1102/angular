@@ -39,6 +39,7 @@
 
     <form 
       [formGroup]='currenciesSumForm'>
+      <h1>CURRENCY SUMMER</h1>
       <div class="inputWrapper">
         <input 
             id="currency1" 
@@ -55,15 +56,15 @@
                 </option>
             </select>
       </div>
-      <button 
+      <div class="button-container">
+        <button 
         [disabled]="!arrayInputs.length"
         (click)='getCurrsSum()'>Get Result</button>
       <button (click)="addInput()">Add Currency</button>
       <!-- <button (click)="watchValues()">Watch</button> -->
-
+      </div>
       <ng-container  *ngIf="arrayInputs.length">
         <div
-         
           *ngFor="let testArr of input.controls let i = index;"
           formArrayName="formArray"
           class="inputWrapper">

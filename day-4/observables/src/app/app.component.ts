@@ -191,7 +191,9 @@ export class AppComponent {
 
       this.httpService.fetchData(this.httpService.url2).subscribe(
         (data) => {
+          //empty array
           this.sumCurrsResult = [];
+
           this.sumCurrsResult.push(data); // {gel_usd:3.15}
           this.sumCurrsResult = Object.entries(this.sumCurrsResult[0]);
           const [_, secondCur] = Object.entries(this.sumCurrsResult[0]);
