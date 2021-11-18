@@ -191,7 +191,7 @@
       *ngIf="isEditing"
       id="btn-edit"
       [disabled] = "!profileForm.valid && checkbox.value"
-      (click)="this.isEditing = !this.isEditing">Update User
+      (click)="updateUserInfo()">Update User
   </button>
     </div>
 </div>

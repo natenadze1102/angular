@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
 
   user: any;
 
-  @Output() newItemEvent = new EventEmitter(); // design type!
+  @Output() newItemEvent = new EventEmitter();
   @Input() usersArray!: object[];
   @Input() userIndex!: number;
   @Input() currentUser: any;
@@ -105,16 +105,9 @@ export class FormComponent implements OnInit {
       this.currentUser.phone = this.profileForm.value.phoneNum;
       this.currentUser.website = this.profileForm.value.web;
 
-      // this.isEditing = false;
+      // this.isEditing = !this.isEditing;
     }
   }
-
-  // updateProfile() {
-  //   // this.profileForm.patchValue({
-  //   //   nick: 'Nancy',
-  //   //   web: 'pill.ge',
-  //   // });
-  // }
 
   get profileFormControl() {
     // console.log(this.profileForm.controls);
