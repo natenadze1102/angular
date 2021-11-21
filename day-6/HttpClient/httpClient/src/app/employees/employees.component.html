@@ -1,0 +1,57 @@
+<div class="form-wrapper">
+    <h3 *ngIf="employeeList">Displaying {{employeeList.length}} employees</h3>
+    <ul>
+      <li *ngFor="let employee of employeeList | paginate: config">
+          <span class="employeeName">{{employee.name}}</span>|<a [routerLink]="['employee/',employee.id]">View</a>|<button 
+            (click)="onEditEmployee(employee)"
+            class="editBtn">Edit</button>|
+          <button 
+            (click)="onDeleteEmployee(employee)"
+            class="delBtn">Delete</button>
+      </li>
+    </ul>
+
+    <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
+                          (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
+                          [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
+                          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+  <form 
+      *ngIf="dataLoaded"
+      #editEmployeeForm="ngForm"
+      [formGroup]="editForm"
+      (ngSubmit)="editEmployee()">
+
+  <div class="inputWrapper">
+      <label for="name">Name</label>
+      <input 
+      id="name"
+      type="text" 
+      name="name"
+      formControlName="name">
+  </div>
+
+  <div class="inputWrapper">
+      <label for="salary">Email</label>
+      <input 
+          type="email"
+          id="email"
+          name='email'
+          formControlName="email">
+  </div>
+      <div class="inputWrapper">
+          <label for="website">Web</label>
+          <input 
+              type="url"
+              id="website"
+              name='website'
+              formControlName="website">
+      </div>
+      <button 
+            [disabled] = "!editEmployeeForm.valid"
+            class="btn btn-success btn-pointer">
+            Update Employee</button>
+  </form>
+  
+</div>
+

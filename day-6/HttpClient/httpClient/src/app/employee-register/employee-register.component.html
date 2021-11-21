@@ -1,0 +1,33 @@
+<!-- onCreateUser(userForm.value) -->
+<form 
+    #userForm="ngForm"
+    [formGroup]="profileForm"
+    (ngSubmit)="onCreateEmployee()">
+    
+    <div class="inputWrapper">
+        <label for="name">Name</label>
+        <input 
+        id="name"
+        type="text" 
+        name="name"
+        formControlName="name">
+    </div>
+  
+    <div class="inputWrapper">
+        <label for="email">Email</label>
+        <input 
+            type="email"
+            id="email"
+            name='email'
+            formControlName="email">
+    </div>
+        <div class="inputWrapper">
+            <label for="web">Web</label>
+            <input 
+                type="url"
+                id="web"
+                name='web'
+                formControlName="web">
+        </div>
+        <button [disabled] = "!userForm.valid">Register Employee</button>
+</form>
