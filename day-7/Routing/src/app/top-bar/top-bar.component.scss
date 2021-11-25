@@ -1,0 +1,13 @@
+.main-div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+a {
+    align-self: baseline;
+    text-transform: uppercase;
+    background: slategrey;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    color: #fff;
+}

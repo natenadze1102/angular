@@ -1,0 +1,69 @@
+<div id="btn-wrapper">
+    <button class="btn btn-danger btn-logout" (click)="onLogout()">Logout</button>
+</div>
+
+<div class="form-wrapper">
+    <h3 *ngIf="userList">Displaying {{userList.length}} users</h3>
+    <ul>
+        <li *ngFor="let user of userList">
+            <span class="userName">{{user.email}}</span>|
+            <button  
+                class="viewBtn"
+                [disabled] = 'user.id !==  loggedUserId'
+                [routerLink]="['user/',user.id]
+                ">View
+            </button>|
+            <button 
+                [disabled] = "user.id !==  loggedUserId"
+                (click)="onEditUser(user)"
+                class="editBtn">Edit
+            </button>|
+            <button 
+                [disabled] = "user.id !==  loggedUserId"
+                (click)="onDeleteUser(user)"
+                class="delBtn">Delete</button>
+        </li>
+    </ul>
+
+    <!-- <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
+                          (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
+                          [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
+                          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls> -->
+
+    
+    <form 
+        *ngIf="dataLoaded"
+        #edituserForm="ngForm"
+        [formGroup]="editForm"
+        (ngSubmit)="editUser()">
+
+        <div class="inputWrapper">
+            <label for="name">Email</label>
+            <input 
+                id="email"
+                type="email" 
+                name="email"
+                formControlName="email">
+        </div>
+
+        <div class="inputWrapper">
+            <label for="salary">Pass</label>
+            <input 
+                type="password"
+                id="password"
+                name='password'
+                formControlName="pass">
+        </div>
+       
+        <button 
+            [disabled] = "!edituserForm.valid"
+            class="btn btn-success btn-pointer">
+            Update user
+        </button>
+        
+    </form>
+  
+</div>
+
+

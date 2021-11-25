@@ -184,7 +184,7 @@ export class AppComponent {
 
     for (let currency of this.arrayInputs.controls) {
       this.httpService.url2 = `https://free.currconv.com/api/v7/convert?q=${
-        currency.value.currencyValue
+        currency.value.currencyValue //AED
       }_${
         this.currenciesSumForm.get('finalResult')?.value
       }&compact=ultra&apiKey=14f774d75867a5570702`;

@@ -1,0 +1,34 @@
+<form 
+    #userForm="ngForm"
+    [formGroup]="loginForm"
+    (ngSubmit)="onloginUser()">
+
+    <div>
+        <h2 *ngIf="userMatch === 'true'" class="success-logged">Congrats.You logged successfully!</h2>
+        <h2 *ngIf="userMatch === 'false'" class="fail-logged">Wrong email or password</h2>
+    </div>
+
+    <div class="inputWrapper">
+        <label for="email">Email</label>
+        <input 
+            type="email"
+            id="email"
+            name='email'
+            formControlName="email">
+    </div>
+        <div class="inputWrapper">
+            <label for="password">Pass</label>
+            <input 
+                type="password"
+                id="password"
+                name='password'
+                formControlName="pass">
+        </div>
+        <button 
+            [disabled] = "!loginForm.valid"
+            type="submit"
+            class="btn-loggin"
+            >
+            Login
+        </button>
+</form>

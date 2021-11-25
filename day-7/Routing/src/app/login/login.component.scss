@@ -1,0 +1,19 @@
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    .success-logged {
+        color: lightgreen;
+    }
+    
+    .btn-loggin {
+        position: relative;
+        left: 4rem;
+    }
+    
+    .fail-logged {
+        color: red;
+    }
+}
