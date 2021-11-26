@@ -42,10 +42,6 @@ export class UsersComponent implements OnInit {
   }
 
   onEditUser(user: any) {
-    // let test = this.userList.find((id: string) => {
-    //   console.log(user.id);
-    //   return user.id === id;
-    // });
     console.log(user);
     this.userId = user.id;
 
@@ -79,7 +75,7 @@ export class UsersComponent implements OnInit {
   onLogout() {
     this.route.navigate(['/login']);
     this.auth.logout();
-    this.auth.toggleLoginStateToFalse();
+    this.auth.toggleLoginState();
     console.log(this.auth.loggedIn + 'test');
   }
 }

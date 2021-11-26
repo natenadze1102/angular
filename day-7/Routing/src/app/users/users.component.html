@@ -19,18 +19,11 @@
                 class="editBtn">Edit
             </button>|
             <button 
-                [disabled] = "user.id !==  loggedUserId"
+                [disabled] = "user.id !==  loggedUserId || dataLoaded"
                 (click)="onDeleteUser(user)"
                 class="delBtn">Delete</button>
         </li>
     </ul>
-
-    <!-- <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
-                          (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
-                          [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
-                          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-    </pagination-controls> -->
-
     
     <form 
         *ngIf="dataLoaded"

@@ -48,7 +48,10 @@ export class LoginComponent implements OnInit {
     // console.log(filtered);
     if (filtered.length > 0) {
       this.auth.login();
-      this.auth.toggleLoginStateToTrue();
+      this.auth.toggleLoginState();
+      this.auth.loginStateChange.subscribe((value: any) => {
+        this.auth.loggedIn = value;
+      });
       this.userMatch = 'true';
       this.currentUserId = filtered[0].id;
       this.UsersService.showCurrentUserId(filtered[0].id);
@@ -58,7 +61,7 @@ export class LoginComponent implements OnInit {
       }, 500);
     } else {
       this.auth.logout();
-      this.auth.toggleLoginStateToFalse();
+      this.auth.toggleLoginState();
       this.userMatch = 'false';
     }
   }
