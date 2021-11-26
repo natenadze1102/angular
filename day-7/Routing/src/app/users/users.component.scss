@@ -90,6 +90,18 @@ a {
     border-radius: 10px;
 }
 
+.btn-update {
+    font-size: 3.2rem;
+    position: relative;
+    left: 2rem;
+    border-radius: 1rem;
+    opacity: .7;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
 
 
 
