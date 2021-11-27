@@ -23,21 +23,19 @@ export class UsersComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private route: Router,
-    private userService: UsersService,
     private fb: FormBuilder,
-    private UsersService: UsersService,
+    private usersService: UsersService,
     private activateRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.userList = this.userService.getUsers();
+    this.userList = this.usersService.getUsers();
 
     this.dataLoaded = false;
     this.activateRoute.params.subscribe((data) => {
       this.userId = data.id;
     });
-    this.loggedUserId = this.UsersService.currentUserId;
-    // console.log(this.loggedUserId);
+    this.loggedUserId = this.usersService.currentUserId;
   }
 
   onEditUser(user: any) {
@@ -53,23 +51,28 @@ export class UsersComponent implements OnInit {
   }
 
   editUser() {
-    this.UsersService.editUser(
+    this.usersService.editUser(
       this.userId,
       this.editForm.controls.email.value,
       this.editForm.controls.pass.value
     );
-    this.userList = this.userService.getUsers();
+    this.userList = this.usersService.getUsers();
     this.dataLoaded = false;
   }
 
   onDeleteUser(user: any) {
-    this.UsersService.deleteUser(user.id);
-    this.userList = this.userService.getUsers();
+    this.usersService.deleteUser(user.id);
+    this.userList = this.usersService.getUsers();
+
+    setTimeout(() => {
+      this.auth.logout();
+      this.route.navigate(['/login']);
+    }, 500);
   }
 
   onLogout() {
-    this.route.navigate(['/login']);
     this.auth.logout();
-    this.auth.toggleLoginState();
+
+    this.route.navigate(['/login']);
   }
 }

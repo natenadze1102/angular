@@ -22,6 +22,7 @@ export class AuthService {
 
   logout() {
     this.loggedIn = false;
+    this.toggleLoginState();
   }
 
   toggleLoginState() {
