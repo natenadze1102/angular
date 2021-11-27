@@ -17,14 +17,19 @@ export class AuthGuardsGuard implements CanActivate, CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     //Authentication and Authorization goes here
-    return this.authService.isAuthenticated().then((authenticated: any) => {
-      if (authenticated) {
-        return true;
-      } else {
-        this.router.navigate(['/']);
-        return false;
+    return this.authService.isAuthenticated().then(
+      (authenticated: any) => {
+        if (authenticated) {
+          return true;
+        } else {
+          this.router.navigate(['/']);
+          return false;
+        }
+      },
+      (error) => {
+        console.log(error);
       }
-    });
+    );
   }
   canActivateChild(
     route: ActivatedRouteSnapshot,
