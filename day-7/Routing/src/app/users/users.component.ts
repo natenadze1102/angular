@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -38,7 +37,7 @@ export class UsersComponent implements OnInit {
       this.userId = data.id;
     });
     this.loggedUserId = this.UsersService.currentUserId;
-    console.log(this.loggedUserId);
+    // console.log(this.loggedUserId);
   }
 
   onEditUser(user: any) {
@@ -54,21 +53,17 @@ export class UsersComponent implements OnInit {
   }
 
   editUser() {
-    // this.userList[this.userId - 1].email = this.editForm.controls.email.value;
-    // this.userList[this.userId - 1].password = this.editForm.controls.pass.value;
     this.UsersService.editUser(
       this.userId,
       this.editForm.controls.email.value,
       this.editForm.controls.pass.value
     );
+    this.userList = this.userService.getUsers();
     this.dataLoaded = false;
   }
 
   onDeleteUser(user: any) {
     this.UsersService.deleteUser(user.id);
-
-    console.log(this.UsersService.getUsers());
-    console.log(user.id);
     this.userList = this.userService.getUsers();
   }
 
@@ -76,6 +71,5 @@ export class UsersComponent implements OnInit {
     this.route.navigate(['/login']);
     this.auth.logout();
     this.auth.toggleLoginState();
-    console.log(this.auth.loggedIn + 'test');
   }
 }

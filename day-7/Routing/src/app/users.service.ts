@@ -20,6 +20,21 @@ export class UsersService {
       email: 'loranat57@mail.ru',
       password: '12345',
     },
+    {
+      id: 4,
+      email: 'giorgi1993@gmail.com',
+      password: '123',
+    },
+    {
+      id: 5,
+      email: 'giorgi93@gmail.com',
+      password: '123',
+    },
+    {
+      id: 6,
+      email: 'giorgi@gmail.com',
+      password: '123',
+    },
   ];
 
   currentUserId!: number;
@@ -28,21 +43,13 @@ export class UsersService {
     return this.users;
   }
 
-  showUser(id: string) {
-    // return this.users.find((_id) => {
-    //   return id === _id;
-    // });
-  }
-
   editUser(id: number, email: string, pass: string) {
-    this.users[id - 1].email = email;
-    this.users[id - 1].password = pass;
+    const userIndex = this.users.findIndex((user) => user.id == id);
+    this.users[userIndex].email = email;
+    this.users[userIndex].password = pass;
   }
 
   deleteUser(id: number) {
-    // this.users.splice(id - 1, 1);
-    // let currentUser = this.users.find((x) => x.id === id);
-    // console.log(currentUser);
     return (this.users = this.users.filter((user) => {
       return user.id !== id;
     }));

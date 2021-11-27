@@ -9,17 +9,17 @@
             <span class="userName">{{user.email}}</span>|
             <button  
                 class="viewBtn"
-                [disabled] = 'user.id !==  loggedUserId'
+            
                 [routerLink]="['user/',user.id]
                 ">View
             </button>|
             <button 
-                [disabled] = "user.id !==  loggedUserId"
+                
                 (click)="onEditUser(user)"
                 class="editBtn">Edit
             </button>|
             <button 
-                [disabled] = "user.id !==  loggedUserId || dataLoaded"
+               
                 (click)="onDeleteUser(user)"
                 class="delBtn">Delete</button>
         </li>
