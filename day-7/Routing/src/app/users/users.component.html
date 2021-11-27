@@ -19,7 +19,7 @@
                 class="editBtn">Edit
             </button>|
             <button 
-               
+                [disabled] = "user.id !==  loggedUserId || dataLoaded"
                 (click)="onDeleteUser(user)"
                 class="delBtn">Delete</button>
         </li>
