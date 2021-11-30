@@ -1,0 +1,16 @@
+<ng-container>
+    <div 
+        @triggerLoader
+        *ngIf="showSpinner"
+        class="loader editFormFetched">
+        Loading...
+    </div>
+
+    <ul *ngIf="employeeDetails">
+        <li> <span>Employee Id:</span> <span>{{employeeDetails.id}}</span></li>
+        <li><span>Employee Name:</span> <span>{{employeeDetails.name}}</span></li>
+        <li><span>Employee Email:</span> <span>{{employeeDetails.email}}</span></li>
+        <li><span>Employee Phone:</span> <span>{{employeeDetails.phone}}</span></li>
+        <li><span>Employee Website:</span><span>{{employeeDetails.website}}</span></li>
+    </ul>
+</ng-container>

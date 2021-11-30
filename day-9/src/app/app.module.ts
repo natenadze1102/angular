@@ -1,0 +1,36 @@
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { RouterModule } from '@angular/router';
+import { EmployeeComponent } from './employees/employee/employee.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SpinnerComponent } from './spinner/spinner.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    EmployeeRegisterComponent,
+    EmployeesComponent,
+    EmployeeComponent,
+    SpinnerComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}

@@ -1,0 +1,116 @@
+<div class="form-wrapper">
+    <h3 *ngIf="employeeList">Displaying {{employeeList.length}} employees</h3>
+
+    <ng-container>
+      <div 
+          @triggerLoader
+          *ngIf="!employeeList || showSpinnerOnDelete"
+          class="loader onEmployeeListFetched">
+          Loading...
+      </div>
+      <ul  *ngIf="employeesLoaded">
+        <li *ngFor="let employee of employeeList | paginate: config">
+            <span class="employeeName">{{employee.name}}</span>|
+  
+            <button 
+                [routerLink]="['employee/',employee.id]"
+                class="viewBtn"
+                [disabled]="this.disableBtn">View
+            </button>|
+  
+            <button 
+                (click)="onEditEmployee(employee)"
+                class="editBtn"
+                [disabled]="this.disableBtn">Edit
+            </button>|
+  
+            <button 
+              (click)="onDeleteEmployee(employee)"
+              class="delBtn"
+              [disabled]="this.disableBtn">Delete
+            </button>
+  
+        </li>
+      </ul>
+    </ng-container>
+    
+    <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
+                          (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
+                          [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
+                          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+
+
+<div style="position: relative;">
+  <form 
+      *ngIf="dataLoaded"
+      #editEmployeeForm="ngForm"
+      [formGroup]="editForm"
+      (ngSubmit)="editEmployee()"
+      class="editForm">
+
+
+    <div class="inputWrapper">
+        <label for="name">Name</label>
+        <input 
+        id="name"
+        type="text" 
+        name="name"
+        formControlName="name">
+    </div>
+
+    <div class="inputWrapper">
+        <label for="salary">Email</label>
+        <input 
+            type="email"
+            id="email"
+            name='email'
+            formControlName="email">
+    </div>
+        <div class="inputWrapper">
+            <label for="website">Web</label>
+            <input 
+                type="url"
+                id="website"
+                name='website'
+                formControlName="website">
+        </div>
+        <button 
+              [disabled] = "!editEmployeeForm.valid"
+              class="btn btn-success btn-pointer">
+              Update Employee
+        </button>
+  </form>
+
+  <div 
+      @triggerLoader
+      *ngIf="showSpinner"
+      class="loader editFormFetched">
+      Loading...
+  </div>
+
+</div>
+  
+<div 
+    @questionToDeleteUser
+    *ngIf="isShown"
+    class="on-delete">
+
+    <div>
+      <p>Do you really want to delete {{currentEmployee}} from employee list?</p>
+      <button (click) = 'deleteEmployee()'>🧹</button>
+      <button (click) = 'isShown = false; disableBtn = false'>🚫</button>
+    </div>
+</div>
+
+<div 
+    @userRegDelEdit
+    *ngIf="popupLoaded"
+    [ngClass]="{
+                'on-delete-employee':true,
+                'deleted-success': this.userOperatSuccess,
+                'deleted-error': !this.userOperatSuccess
+              }">
+    <p>{{this.message}}</p>
+</div>
+
