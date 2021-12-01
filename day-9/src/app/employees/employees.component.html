@@ -4,7 +4,7 @@
     <ng-container>
       <div 
           @triggerLoader
-          *ngIf="!employeeList || showSpinnerOnDelete"
+          *ngIf="showSpinnerOnDelete"
           class="loader onEmployeeListFetched">
           Loading...
       </div>
@@ -31,14 +31,21 @@
             </button>
   
         </li>
+
+          <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
+              (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
+              [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+          </pagination-controls>
       </ul>
+
+      <div *ngIf="!employeesLoaded && !showSpinnerOnDelete"
+            class="onEmployeesLoadedFalse">
+        <h3>No employees loaded</h3>
+      </div>
     </ng-container>
     
-    <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
-                          (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
-                          [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
-                          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-    </pagination-controls>
+
 
 
 <div style="position: relative;">

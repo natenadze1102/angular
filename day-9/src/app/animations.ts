@@ -8,12 +8,14 @@ import {
 
 export const spinnerAnimation = trigger('triggerLoader', [
   transition(':enter', [
-    style({ transform: 'rotate(0deg)', opacity: '1' }),
+    style({ opacity: '1' }),
     animate(
-      '5s',
+      '3s',
       keyframes([
         style({ backgroundColor: 'silver', offset: 0 }),
-        style({ transform: 'rotate(1800deg)', offset: 1 }),
+        style({ backgroundColor: 'lightGreen', offset: 0.5 }),
+        style({ backgroundColor: 'red', offset: 0.75 }),
+        style({ offset: 1 }),
       ])
     ),
   ]),
@@ -32,7 +34,7 @@ export const spinnerAnimation = trigger('triggerLoader', [
 
 export const questioningUserAnimation = trigger('questionToDeleteUser', [
   transition(':enter', [
-    style({ transform: 'translateY(-100%)', opacity: '0' }),
+    style({ transform: 'translateY(-30%)', opacity: '0' }),
     animate('500ms', style({ transform: 'translateY(0)', opacity: 1 })),
   ]),
   transition(':leave', [

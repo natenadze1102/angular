@@ -41,7 +41,6 @@ export class EmployeesComponent {
   toggleIsShown() {
     this.isShown = !this.isShown;
   }
-  //
 
   public config: any = {
     id: 'advanced',
@@ -58,7 +57,7 @@ export class EmployeesComponent {
 
   ngOnInit(): void {
     this.dataLoaded = false;
-
+    this.showSpinnerOnDelete = true;
     this.activateRoute.params.subscribe((data) => {
       this.userId = data.id;
     });
@@ -66,31 +65,20 @@ export class EmployeesComponent {
       (data) => {
         this.employeesLoaded = true;
         this.employeeList = data;
+
+        this.showSpinnerOnDelete = false;
       },
       (err) => {
         this.popupLoaded = true;
         this.userOperatSuccess = false;
         this.message = `Sorry, but error occured. Check your internet connection`;
-        this.showSpinner = false;
-        this.isShown = false;
-        this.showSpinnerOnDelete = false;
-
         setTimeout(() => {
           this.popupLoaded = false;
+          this.showSpinnerOnDelete = false;
+          console.log(this.showSpinnerOnDelete, this.showSpinner, this.isShown);
         }, 2000);
       }
     );
-
-    // if (this.userId) {
-    //   this.UsersService.deleteEmployee(this.userId).subscribe(
-    //     (data) => {
-    //       console.log(data);
-    //     },
-    //     (err) => {
-    //       console.log(err);
-    //     }
-    //   );
-    // }
   }
 
   onEditEmployee(employee: any) {
@@ -112,7 +100,7 @@ export class EmployeesComponent {
           email: [this.editingEmployeeDetails.email, Validators.required],
           website: [this.editingEmployeeDetails.website, Validators.required],
         });
-        console.log(this.editingEmployeeDetails);
+        // console.log(this.editingEmployeeDetails);
         this.dataLoaded = true;
       })
       .catch((err) => {
@@ -136,7 +124,7 @@ export class EmployeesComponent {
       this.editForm.value
     ).subscribe(
       () => {
-        return Promise.resolve(this.UsersService.changeToFalse()).then(() => {
+        return Promise.resolve().then(() => {
           setTimeout(() => {
             return (this.dataLoaded = false);
           }, 100);

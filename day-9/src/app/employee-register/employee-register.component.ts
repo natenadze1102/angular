@@ -59,6 +59,7 @@ export class EmployeeRegisterComponent implements OnInit {
         this.popupLoaded = true;
         this.userOperatSuccess = false;
         this.message = `Sorry, but error occured. Check your internet connection`;
+        this.isShown = false;
 
         setTimeout(() => {
           this.popupLoaded = false;

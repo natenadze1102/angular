@@ -34,7 +34,7 @@ export class EmployeeComponent implements OnInit {
       },
       (err) => {
         this.showSpinner = false;
-        console.log(err);
+        this.employeeDetails;
       }
     );
   }

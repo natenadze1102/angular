@@ -111,8 +111,8 @@ ul {
     font-size: 10px;
     margin: 50px auto;
     text-indent: -9999em;
-    width: 10em;
-    height: 10em;
+    width: 8rem;
+    height: 8rem;
     border-radius: 50%;
     background: #ffffff;
     background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
@@ -120,10 +120,11 @@ ul {
     background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
     background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
     background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-    transform: translateZ(0);
     position: absolute;
     left: 48%;
     top: 10%;
+
+    animation: myAnimation 1s infinite ease-in;
   }
   .loader:before {
     width: 50%;
@@ -147,7 +148,14 @@ ul {
     left: 0;
     bottom: 0;
     right: 0;
+}
+
+@keyframes myAnimation {
+    0%   {transform:  rotate(0)}
+    100%  {transform:  rotate(720deg)}
   }
+  
+
 
   .on-delete-employee {
     display: flex;

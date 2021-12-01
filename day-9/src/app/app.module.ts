@@ -11,7 +11,6 @@ import { EmployeesComponent } from './employees/employees.component';
 import { RouterModule } from '@angular/router';
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     EmployeeRegisterComponent,
     EmployeesComponent,
     EmployeeComponent,
-    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

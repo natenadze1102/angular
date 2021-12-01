@@ -32,27 +32,6 @@ export class UsersService {
     return this.http.delete(this.baseUrl + 'users/' + id);
   }
   //
-  //
-  //
 
-  public subject = new Subject<any>();
-  public isShown: boolean = false;
-
-  constructor(private http: HttpClient) {
-    this.subject.subscribe((value: boolean) => {
-      this.isShown = value;
-    });
-  }
-
-  changeToShow() {
-    this.isShown = true;
-  }
-
-  changeToFalse() {
-    this.isShown = false;
-  }
-
-  toggleIsShown() {
-    this.subject.next(this.isShown);
-  }
+  constructor(private http: HttpClient) {}
 }

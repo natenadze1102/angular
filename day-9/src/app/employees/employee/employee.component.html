@@ -13,4 +13,11 @@
         <li><span>Employee Phone:</span> <span>{{employeeDetails.phone}}</span></li>
         <li><span>Employee Website:</span><span>{{employeeDetails.website}}</span></li>
     </ul>
+
+    <div
+        *ngIf="!employeeDetails && !showSpinner "
+        class="userLoadedFalse" >
+        <h3>No User Loaded !</h3>
+    </div>
+    
 </ng-container>
