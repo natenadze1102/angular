@@ -1,5 +1,6 @@
 <div class="form-wrapper">
-    <h3 *ngIf="employeeList">Displaying {{employeeList.length}} employees</h3>
+  <ng-container  *ngIf="employeeList">
+    <h3>Displaying {{employeeList.length}} employees</h3>
     <ul>
       <li *ngFor="let employee of employeeList | paginate: config">
           <span class="employeeName">{{employee.name}}</span>|<a [routerLink]="['employee/',employee.id]">View</a>|<button 
@@ -9,13 +10,17 @@
             (click)="onDeleteEmployee(employee)"
             class="delBtn">Delete</button>
       </li>
-    </ul>
 
-    <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
-                          (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
-                          [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
-                          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-    </pagination-controls>
+      
+        <pagination-controls [id]="config.id" (pageChange)="onPageChange($event)"
+                            (pageBoundsCorrection)="onPageBoundsCorrection($event)" [maxSize]="maxSize" [directionLinks]="true" [autoHide]="true"
+                            [responsive]="true" previousLabel="< Prev" nextLabel="Next >" screenReaderPaginationLabel="Pagination"
+                            screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+    </ul>
+  </ng-container>
+    
+
   <form 
       *ngIf="dataLoaded"
       #editEmployeeForm="ngForm"

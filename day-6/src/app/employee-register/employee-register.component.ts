@@ -14,7 +14,13 @@ export class EmployeeRegisterComponent implements OnInit {
   loadedUsers: User[] = [];
   profileForm = this.fb.group({
     name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
+      ],
+    ],
     web: [
       '',
       [
