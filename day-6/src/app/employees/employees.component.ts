@@ -39,17 +39,6 @@ export class EmployeesComponent {
     this.UsersService.listEmployers().subscribe((data) => {
       this.employeeList = data;
     });
-
-    if (this.userId) {
-      this.UsersService.deleteEmployee(this.userId).subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    }
   }
 
   onEditEmployee(user: any) {
