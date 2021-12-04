@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { onCreateEditDelUserAnimation, spinnerAnimation } from '../animations';
 import { User } from '../users.model';
 import { UsersService } from '../users.service';
+import { AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: 'app-employee-register',
@@ -18,10 +19,17 @@ export class EmployeeRegisterComponent implements OnInit {
   popupLoaded: boolean = false;
   message: string = '';
   userOperatSuccess: boolean = false;
+  isSpinning: boolean = false;
 
   profileForm = this.fb.group({
     name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+      ],
+    ],
     web: [
       '',
       [
@@ -32,6 +40,10 @@ export class EmployeeRegisterComponent implements OnInit {
       ],
     ],
   });
+
+  onAnimationEvent(event: AnimationEvent) {
+    this.isSpinning = this.isSpinning === false ? true : false;
+  }
 
   onCreateEmployee() {
     this.isShown = true;

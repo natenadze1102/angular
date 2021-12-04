@@ -1,35 +1,26 @@
 import {
   animate,
   keyframes,
+  state,
   style,
   transition,
   trigger,
 } from '@angular/animations';
 
 export const spinnerAnimation = trigger('triggerLoader', [
-  transition(':enter', [
-    style({ opacity: '1' }),
-    animate(
-      '3s',
-      keyframes([
-        style({ backgroundColor: 'silver', offset: 0 }),
-        style({ backgroundColor: 'lightGreen', offset: 0.5 }),
-        style({ backgroundColor: 'red', offset: 0.75 }),
-        style({ offset: 1 }),
-      ])
-    ),
-  ]),
-  transition(':leave', [
-    animate(
-      '100ms',
-      keyframes([
-        style({
-          backgroundColor: 'lightGreen',
-          offset: 1,
-        }),
-      ])
-    ),
-  ]),
+  state(
+    'disable',
+    style({
+      transform: 'rotate(0)',
+    })
+  ),
+  state(
+    'enable',
+    style({
+      transform: 'rotate(360deg)',
+    })
+  ),
+  transition('enable <=> disable', [animate('1s')]),
 ]);
 
 export const questioningUserAnimation = trigger('questionToDeleteUser', [

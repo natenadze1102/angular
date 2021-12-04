@@ -32,7 +32,8 @@
             [disabled] = "!userForm.valid">Register Employee
         </button>
         <div 
-            @triggerLoader
+            [@triggerLoader] = "isSpinning? 'enable' : 'disable'"
+            (@triggerLoader.done)="onAnimationEvent($event)"
             *ngIf="isShown"
             class="loader">
             Loading...

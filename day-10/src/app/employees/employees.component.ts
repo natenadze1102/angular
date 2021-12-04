@@ -8,10 +8,17 @@ import {
   spinnerAnimation,
 } from '../animations';
 
+import { AnimationEvent } from '@angular/animations';
+
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
+  // host: {
+  //   '[@triggerLoader]': "isSpinning? 'enable' : 'disable'",
+  //   '(@triggerLoader.start)': 'captureStartEvent($event)',
+  //   '(@triggerLoader.done)': 'onAnimationEvent($event)',
+  // },
   animations: [
     [questioningUserAnimation],
     [onCreateEditDelUserAnimation],
@@ -37,7 +44,17 @@ export class EmployeesComponent {
   isShown: boolean = false;
   showSpinner: boolean = false;
   showSpinnerOnDelete: boolean = false;
+  //Animation event vars
+  isSpinning: boolean = false;
+  closed: boolean = false;
 
+  //Animated End
+  onAnimationEvent(event: AnimationEvent) {
+    this.isSpinning = this.isSpinning === false ? true : false;
+  }
+  //
+  //
+  //
   toggleIsShown() {
     this.isShown = !this.isShown;
   }

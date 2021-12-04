@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { spinnerAnimation } from 'src/app/animations';
 import { UsersService } from 'src/app/users.service';
+import { AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: 'app-employee',
@@ -15,11 +16,16 @@ export class EmployeeComponent implements OnInit {
   message: string = '';
 
   showSpinner: boolean = false;
+  isSpinning: boolean = false;
 
   constructor(
     private userService: UsersService,
     private activateRoute: ActivatedRoute
   ) {}
+
+  onAnimationEvent(event: AnimationEvent) {
+    this.isSpinning = this.isSpinning === false ? true : false;
+  }
 
   ngOnInit(): void {
     this.showSpinner = true;

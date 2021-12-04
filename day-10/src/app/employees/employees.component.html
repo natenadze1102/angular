@@ -2,12 +2,13 @@
     <h3 *ngIf="employeeList">Displaying {{employeeList.length}} employees</h3>
 
     <ng-container>
-      <div 
-          @triggerLoader
-          *ngIf="showSpinnerOnDelete"
-          class="loader onEmployeeListFetched">
-          Loading...
-      </div>
+        <div 
+            [@triggerLoader] = "isSpinning? 'enable' : 'disable'"
+            (@triggerLoader.done)="onAnimationEvent($event)"
+            *ngIf="showSpinnerOnDelete"
+            class="loader onEmployeeListFetched">
+            Loading...
+        </div>
       <ul  *ngIf="employeesLoaded">
         <li *ngFor="let employee of employeeList | paginate: config">
             <span class="employeeName">{{employee.name}}</span>|
@@ -89,9 +90,12 @@
         </button>
   </form>
 
+  
   <div 
-      @triggerLoader
-      *ngIf="showSpinner"
+        [@triggerLoader] = "isSpinning? 'enable' : 'disable'"
+        (@triggerLoader.done)="onAnimationEvent($event)"
+        *ngIf="showSpinner"
+
       class="loader editFormFetched">
       Loading...
   </div>
@@ -120,4 +124,5 @@
               }">
     <p>{{this.message}}</p>
 </div>
+
 

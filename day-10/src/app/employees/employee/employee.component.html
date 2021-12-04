@@ -1,6 +1,7 @@
 <ng-container>
     <div 
-        @triggerLoader
+        [@triggerLoader] = "isSpinning? 'enable' : 'disable'"
+        (@triggerLoader.done)="onAnimationEvent($event)"
         *ngIf="showSpinner"
         class="loader editFormFetched">
         Loading...

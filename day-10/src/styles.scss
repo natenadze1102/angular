@@ -102,10 +102,6 @@ ul {
     list-style: none;
 }
 
-// ANIMATIONS
-
-
-//SPINNER - ANIMATION
 
 .loader {
     font-size: 10px;
@@ -124,7 +120,7 @@ ul {
     left: 48%;
     top: 10%;
 
-    animation: myAnimation 1s infinite ease-in;
+    // animation: myAnimation 1s infinite ease-in;
   }
   .loader:before {
     width: 50%;
@@ -150,11 +146,6 @@ ul {
     right: 0;
 }
 
-@keyframes myAnimation {
-    0%   {transform:  rotate(0)}
-    100%  {transform:  rotate(720deg)}
-  }
-  
 
 
   .on-delete-employee {
